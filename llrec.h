@@ -9,12 +9,11 @@
  */
 struct Node
 {
-    int val;
-    Node *next;
+  int val;
+  Node *next;
 
-    Node(int v, Node* n) : val(v), next(n) {}
+  Node(int v, Node *n) : val(v), next(n) {}
 };
-
 
 /**
  * Given a linked list pointed to by head, creates two lists
@@ -26,7 +25,7 @@ struct Node
  * upon return and head set to NULL (i.e. we are not making copies)
  * in the smaller and larger lists but simply moving Nodes out of
  * the input list and into the two other lists.
- * 
+ *
  * ==============================================================
  * MUST RUN IN O(n) where n is the number of nodes in the input list
  * ==============================================================
@@ -70,21 +69,34 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot);
  *
  */
 template <typename Comp>
-Node* llfilter(Node* head, Comp pred);
+Node *llfilter(Node *head, Comp pred);
+
+template <typename Comp>
+Node *llfilter(Node *head, Comp pred, Node *prev);
 
 //*****************************************************************************
 // Since template implementations should be in a header file, we will
 // implement the above function now.
 //*****************************************************************************
+//*********************************************
+// Provide your implementation below
+//*********************************************
 
 template <typename Comp>
 Node* llfilter(Node* head, Comp pred)
 {
-    //*********************************************
-    // Provide your implementation below
-    //*********************************************
+if(head==NULL ){
+  return NULL;
+} 
 
+Node * temp = llfilter(head->next, pred);
+if((pred(head->val)))
+{
+  delete head;
+  return temp;
+}
+head-> next = temp;
+return head;
 
 }
-
 #endif

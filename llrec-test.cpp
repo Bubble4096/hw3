@@ -67,7 +67,19 @@ void dealloc(Node* head)
 //   function object struct declarations
 // -----------------------------------------------
 
+struct IsEven
+{
+    bool operator()(int num) {
+        return (num % 2) == 0;
+    }
+};
 
+struct IsOdd
+{
+    bool operator()(int num) {
+        return (num % 2) != 0;
+    }
+};
 
 
 
@@ -84,6 +96,32 @@ int main(int argc, char* argv[])
     Node* head = readList(argv[1]);
     cout << "Original list: ";
     print(head);
+    Node* smaller;
+    Node* larger;
+
+    llpivot(head, smaller, larger, 8);
+    cout << "after pivot" << endl;
+    cout << endl << "smaller: " ;
+    print(smaller);
+    cout << endl << "larger: " ;
+    print(larger);
+
+    cout << endl << "filter test" << endl;
+
+    Node* head2 = readList(argv[1]);
+    print(head2);
+    Node* remaining = NULL;
+   remaining = llfilter(head2, IsOdd());
+    cout << "after successful filter" << endl;
+    print(head2);
+    
+
+    
+    //insert functor for slides 
+
+
+
+    
 
     // Test out your linked list code
 
